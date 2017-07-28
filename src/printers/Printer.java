@@ -12,9 +12,11 @@ package printers;
 public class Printer {
 
     private String printerIp;
+    private String printerName;
+
+    //for future use
     private String printerManu;
     private String printerModel;
-    private String printerName;
 
     public Printer(String printerIp, String printerManu, String printerModel, String printerName) {
         this.printerIp = printerIp;
