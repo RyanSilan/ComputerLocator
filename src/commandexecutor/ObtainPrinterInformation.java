@@ -65,8 +65,16 @@ public class ObtainPrinterInformation implements Runnable {
                 if (!tempItem.equals("") && !tempItem.contains("Name") && !tempItem.contains("Send To OneNote 2013 ") && !tempItem.contains("Microsoft Print to PDF") && !tempItem.contains("Microsoft XPS Document Writer")) {
 
                     String[] tempString = tempItem.split("(?=\\d\\d.\\d\\d\\d.\\d\\d.\\d\\d)|(?=\\d\\d.\\d\\d\\d.\\d\\d.\\d\\d\\d)|(?=WSD)");
-                    Printer tempPrinter = new Printer(tempString[1], tempString[0]);
-                    printerArray.add(tempPrinter);
+
+                    //Ran into an issue where it would try to split the string, but fail and then get an out of bounds error 
+                    //Added if statement to address. 
+                    if (tempString.length > 1) {
+                        Printer tempPrinter = new Printer(tempString[1], tempString[0]);
+                        printerArray.add(tempPrinter);
+                    } else {
+                        System.out.println("This string could not be split: " + tempString[0]);
+                    }
+
                 }
 
             }
